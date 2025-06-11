@@ -28,11 +28,10 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
+        player.update(dt)
+
         screen.fill("black")
-
-        # Update game objects here
         player.draw(screen)
-
         pygame.display.flip()
 
         dt = clock.tick(60) / 1000 # Manages fps and saves dt in seconds.
