@@ -20,6 +20,10 @@ def main():
 
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
+
+    updateable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updateable, drawable)
     player = Player(x, y)
 
     # Main game loop
@@ -28,10 +32,11 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        player.update(dt)
+        updateable.update(dt)
 
         screen.fill("black")
-        player.draw(screen)
+        for player in drawable:
+            player.draw(screen)
         pygame.display.flip()
 
         dt = clock.tick(60) / 1000 # Manages fps and saves dt in seconds.
